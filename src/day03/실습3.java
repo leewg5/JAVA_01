@@ -7,7 +7,7 @@ public class 실습3 {
         public static void main(String[] args) {
 
             //1.
-            Scanner scan = new Scanner(System.in); //공용 사용
+//            Scanner scan = new Scanner(System.in); //공용 사용
 /*
             System.out.println("국어 점수를 입력하세요. : ");
             int kor = scan.nextInt();
