@@ -2,9 +2,9 @@ package day03;
 
 import java.util.Scanner;
 
-public class 실습3 {
+//public class 실습3 {
 
-        public static void main(String[] args) {
+//        public static void main(String[] args){
 
             //1.
 //            Scanner scan = new Scanner(System.in); //공용 사용
