@@ -1,6 +1,6 @@
 package 종합.예제4;
 
-public class boardservice4 {
+public class Boardservice4 {
 }
 
 

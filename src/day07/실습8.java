@@ -3,6 +3,7 @@ package day07;
 
 public class 실습8 { // class start
     public static void main(String[] args) { // main start
+
         /*
         // [1]
         Printer print1 = new Printer(); // 객체 생성
@@ -44,10 +45,17 @@ public class 실습8 { // class start
         System.out.println( result6 ); // true
         */
 
-   } // main end
-} // class end
-/*
 
+
+
+
+    }
+}
+
+
+
+
+/*
 [JAVA] 실습8 : 클래스와 객체의메소드
 [ 문제 ] 아래 클래스와 메소드 관련 문제를 해결하시오.
 [ 제출방법 ] 코드가 작성된 파일이 위치한 깃허브 상세 주소를 제출하시오.
