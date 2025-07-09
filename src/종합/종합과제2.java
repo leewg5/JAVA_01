@@ -1,6 +1,12 @@
 package 종합;
 
 public class 종합과제2 {
+
+    public static void main(String[] args) {
+
+
+
+    }
 }
 
 
