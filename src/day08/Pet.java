@@ -2,10 +2,11 @@ package day08;
 
 public class Pet{
     // 멤버 변수
-    String name;
-    String species;
-    int age;
+    public String name;
+    public String species;
+    public int age;
 
+    public Pet(){}
     // 생성자
     public Pet(String name, String species, int age) {
         this.name = name;

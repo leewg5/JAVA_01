@@ -1,69 +1,58 @@
 package day07;
 
-
 public class 실습8 { // class start
+
     public static void main(String[] args) { // main start
 
-        /*
         // [1]
         Printer print1 = new Printer(); // 객체 생성
         print1.printMessage(); // 객체내 메소드 호출
-        */
-        /*
+
         // [2]
         Greeter greet1 = new Greeter(); // 객체 생성
         greet1.greet( "유재석" );
         // "유재석" : 인수/인자 값은 메소드의 매개변수에 대입된다.
         // *** 인수/인자 값의 타입 과 매개변수타입은 일치 ***
-        */
 
-        /*
         // [3]
         SimpleCalculator cal1 = new SimpleCalculator();
         int result3 = cal1.add( 3 , 5 ); // 인자/인수값 : 3 5 , 반환값 : 8
         // int : .add() 메소드가 int 타입으로 값을 반환했기 때문에
         System.out.println( result3 );
-        */
 
-        /*
         // [4]
         Checker check1 = new Checker();
         // check1.isEven( 3.14 ); // 오류발생!!
         boolean result4 = check1.isEven( 3 );
         System.out.println( result4 ); // false
-        */
-        /*
+
         // [5]
         Lamp lamp1 = new Lamp();
         lamp1.turnOn();     // true
         lamp1.turnOff();    // false
-        */
-        /*
+
         // [6]
         Product prod1 = new Product(); // 객체 생성
         boolean result6 = prod1.sell( 5 );
         System.out.println( result6 ); // true
-        */
 
-        // [7]
-        Visualizer 아무거나 = new Visualizer();
-        String 반환된 = 아무거나.getStars(5);
-        System.out.println(반환된);
+        // [문제 7] Visualizer 클래스를 만드세요.
+        Visualizer visual = new Visualizer();
+        String result = visual.getStars( 5 );
+        System.out.println( result );
 
-        // [8]
-
-
-
-
-
-
-    }
-}
+        //  [문제 8] ParkingLot 클래스를 만드세요.
+        ParkingLot parkingLot = new ParkingLot();
+        int result1 = parkingLot.calculateFee(65);
+        int result2 = parkingLot.calculateFee(140);
+        System.out.println( result1 );
+        System.out.println( result2 );
 
 
-
-
+    } // main end
+} // class end
 /*
+
 [JAVA] 실습8 : 클래스와 객체의메소드
 [ 문제 ] 아래 클래스와 메소드 관련 문제를 해결하시오.
 [ 제출방법 ] 코드가 작성된 파일이 위치한 깃허브 상세 주소를 제출하시오.

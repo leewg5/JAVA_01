@@ -1,5 +1,8 @@
 package day06;
 
+import day08.Pet;
+import day08.Rectangle;
+
 import java.util.Scanner;
 
 // === 1) .java 파일내 여러개 클래스 선언 === //

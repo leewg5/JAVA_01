@@ -3,9 +3,13 @@ package 종합.종합과제4;
 //종합과제4
 public class Waiting {
     //1. 멤버 변수 선언(private)
-    public String phone;
-    public int count;
+    private String phone;
+    private int count;
 
+    public Waiting(String phone, int count) {
+        this.phone = phone;
+        this.count = count;
+    }
 
     //마우스 오른쪽 클릭해서 ---> 생성 ---> getter/setter 생성
     public String getPhone() {
