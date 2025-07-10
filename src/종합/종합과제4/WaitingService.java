@@ -1,10 +1,66 @@
-package 종합;
+package 종합.종합과제4;
 
-public class 종합과제4 {
+import java.util.Scanner;
+
+public class WaitingService {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        for (;;) {
+            // 메뉴 출력
+            System.out.println("\n=== 대기 시스템 메뉴 ===");
+            System.out.println("1. 대기 등록");
+            System.out.println("2. 대기 현황 보기");
+            System.out.println("0. 종료");
+            System.out.print("메뉴 선택: ");
+            int menu = scanner.nextInt();
+            scanner.nextLine(); // 개행 처리
+
+            if (menu == 1) {
+                // 대기 등록
+                System.out.print("전화번호 입력: ");
+                String phone = scanner.nextLine();
+
+                System.out.print("인원수 입력: ");
+                int count = scanner.nextInt();
+                scanner.nextLine(); // 개행 처리
+
+                boolean result = WaitingController.addWaiting(phone, count);
+                if (result) {
+                    System.out.println("대기 등록 성공!");
+                } else {
+                    System.out.println("대기 등록 실패: 인원이 초과되었습니다.");
+                }
+
+            } else if (menu == 2) {
+                // 대기 현황 보기
+                System.out.println("\n📋 대기 명단:");
+                Waiting[] list = WaitingController.getWaitingList();
+                boolean isEmpty = true;
+                for (int i = 0; i < list.length; i++) {
+                    if (list[i] != null) {
+                        System.out.println((i + 1) + ". 전화번호: " + list[i].getPhone() +
+                                ", 인원수: " + list[i].getCount());
+                        isEmpty = false;
+                    }
+                }
+                if (isEmpty) {
+                    System.out.println("대기 명단이 없습니다.");
+                }
+
+            } else if (menu == 0) {
+                // 종료
+                System.out.println("프로그램을 종료합니다.");
+                break;
+
+            } else {
+                System.out.println("올바른 메뉴를 선택해주세요.");
+            }
+        }
+
+        scanner.close();
+    }
 }
-
-
-
 
 /*
 [JAVA] 종합과제4 : 식당 대기번호 프로그램 ( 생성자 , 접근제한자 , static , final)
