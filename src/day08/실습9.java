@@ -1,5 +1,7 @@
 package day08;
 
+import java.util.Scanner;
+
 public class 실습9 {
     public static void main(String[] args) {
         // [1]
@@ -57,8 +59,55 @@ public class 실습9 {
         // 예2] 회원(Member) 여러개 : Member[] 회원목록 = new Member[100];
         // 가격(int) 재고(int) : class 제품정보{ int 가격; int 재고; }
 
+
+        // [7]
+        // (채널 7, 볼륨 20) 상태의 객체 생성
+        Television tv = new Television(7, 20);
+        // 객체 정보 출력
+        tv.printInfo();
+
+
+
+
+        // [8]
+        // 객체 생성
+        Player p1 = new Player("손흥민", 90, 95);
+        Player p2 = new Player("이강인", 85, 92);
+        // 객체 정보 출력
+        p1.printInfo();
+        p2.printInfo();
+
+
+
+            // [9]
+            // 객체 생성
+            MenuItem item = new MenuItem("김치찌개", 8000, true);
+            // 출력
+            item.printInfo();
+
+
+
+            // [10]
+            Scanner scanner = new Scanner(System.in);
+            // 사용자 입력 받기
+            System.out.print("이름을 입력하세요: ");
+            String name = scanner.nextLine();
+            System.out.print("나이를 입력하세요: ");
+            int age = scanner.nextInt();
+            scanner.nextLine();  // 개행문자 제거용
+            System.out.print("MBTI를 입력하세요: ");
+            String mbti = scanner.nextLine();
+            // 객체 생성
+            UserProfile user = new UserProfile(name, age, mbti);
+            // 정보 출력
+            System.out.println("\n[입력된 사용자 정보]");
+            user.printInfo();
+            scanner.close();
+
     } // main end
 } // class end
+
+
 /*
 [JAVA] 실습9 : 클래스와 객체의생성자
 [ 문제 ] 아래 클래스와 생성자 관련 핵심 문제를 해결하시오.
