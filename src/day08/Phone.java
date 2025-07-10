@@ -1,4 +1,3 @@
-
 package day08;
 
 public class Phone {
@@ -8,7 +7,7 @@ public class Phone {
     String color; // 핸드폰 색상
     int price;    // 핸드폰 가격
 
-    // 2. 생성자
+    // 2. 생성자 
     // 1) 기본생성자 :
     // -> 클래스내 하나도 생성자가 없으면 자동으로 (컴파일될떄) 생성된다.
     // -> 클래스내 하나 이상의 생성자가 있을때는 직접 기본생성자 정의
@@ -38,6 +37,6 @@ public class Phone {
         // [관례적] 초기화 값은 멤버변수명 와 매개변수명 을 동일하게 한다.
     }
 
-    // 3. 메소드
+    // 3. 메소드 
 
-} // class end
+} // class end 
