@@ -1,0 +1,39 @@
+[ 개념설명 ]
+
+1. 정의 : 자료들의 집합
+2. 종류
+    1) 관계형 데이터베이스 : 표(테이블) 형식*
+    2) NOSQL 데이터베이스 : 객체 형식
+
+3. 목적
+ 1) 데이터의 체계적인 관리
+
+
+
+ 1) DDL : 데이터베이스 정의 언어
+ 2) DML : 데이터베이스 조작 언어
+ 3) DCL : 데이터베이스 제어 언어
+ 4) TCL : 트랜잭션 제어 언어
+
+[ 데이터베이스(MYSQL)설치 ]
+확인..
+
+
+[실습1]
+# 문제1
+create database my_db;
+
+# 문제2
+show databases;
+
+# 문제3
+use my_db;
+
+# 문제4
+drop database my_db;
+
+# 문제5
+drop database company_db;
+create database company_db;
+use company_db;
+show databases;
