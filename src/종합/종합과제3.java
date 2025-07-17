@@ -1,6 +1,11 @@
-package 종합과제3;
+package 종합;
 
 public class 종합과제3 {
+
+    public static void main(String[] args) {
+
+
+    }
 }
 
 
