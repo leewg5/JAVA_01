@@ -12,7 +12,7 @@
             3) show tables;                         : *활성화*중인 데이터베이스내 모든 테이블 조회
         2. use
             1) use 데이터베이스명;                     : DB서버내 지정한 데이터베이스 활성화(사용)
-    [1] 데이터베이스 정의 : DDL
+    [1] 데이터베이스 정의어 : DDL
         1. create
             1) create database 데이터베이스명;         : 지정한 데이터베이스 생성
             2) create table 테이블명(                 : 지정한 테이블 생성
@@ -24,6 +24,40 @@
             2) drop database if exists 데이터베이스명; : 만약에 지정한 데이터베이스 존재하면 삭제
             3) drop table 테이블명;                   : 지정한 테이블 삭제
             4) drop table if exists 테이블명;         : 만약에 지정한 테이블 존재하면 삭제
+
+    [2] 데이터베이스 조작어 : DML , 키워드/문법에 대한 대소문자 구분 없다.
+        1. INSERT
+            1) 특정 속성에 값 대입하여 레코드 추가
+                insert into 테이블명( 속성명1, 속성명2) values( 값1, 값2 );
+            2) 모든 속성에 값 대입하여 레코드 추가 , 속성명 생략 가능
+                insert into 테이블명 values( 값1, 값2 );
+            3) 하나의 insert 로 여러개 레코드 추가
+                insert into 테이블명 values( 값1, 값2 ), (값1, 값2), (값1, 값2);
+            - 주의할점 : 각 속성의 제약조건에 따라 적절하게 값 대입
+        2. SELECT
+            1) 전체 속성에 레코드 조회 , *(와일드카드)
+                select * from 테이블명;
+            2) 특정 속성에 레코드 조회
+                select 속성명1 , 속성명2 from 테이블명
+            3) 특정 속성 조건에 따른 레코드 조회
+                select * from 테이블명 where [조건절];
+        3. UPDATE
+            1) 전체 레코드의 속성값 수정
+                update 테이블명 set 속성명 = 새로운값;
+            2) 특정 속성 조건에 따른 레코드의 속성값 수정
+                update 테이블명 set 속성명 = 새로운값 where [조건절];
+            3) 다수 속성값 수정
+                update 테이블명 set 속성명 = 새로운값 , 속성명 = 새로운값 where [조건절];
+        4. DELETE
+            1) 전체 레코드 삭제
+                delete from 테이블명;
+            2) 특정 속성 조건에 따른 레코드 삭제
+                delete from 테이블명 where [조건절];
+
+        * mysqlWorkbench safeMode(수정/삭제금지) : pc마다 첫 설치 이후 safeMode 켜져 있음.
+        -> 수정/삭제시 safeMode 끄기 : set SQL_SAFE_UPDATES = 0
+
+
 
 [데이터 타입] : 테이블내 속성들이 갖는/저장하는 자료들의 분류/타입/종류
     1. 정수
@@ -75,3 +109,45 @@
 [ 생성된 테이블 다이어그램 확인 ] : 여럿 테이블 간의 관계 확인
     #  workbench 상단메뉴 -> [database] -> [reverse engineer] -> stored conntion : local(선택) -> [next]
     # -> 비밀번호입력 [next] -> 데이터베이스 선택 -> [next] -> [finish]
+
+
+[ 키워드 ]
+    1. 별칭 : as
+        select 속성명 as 별칭 from 테이블명 as 별칭
+        select 속성명 별칭 from 테이블명 별칭
+    2. 중복제거 : distinct
+        select distinct 속성명 from 테이블명
+[ 연산자 ]
+    1. 산술연산자 : +더하기 -빼기 *곱하기 /나누기 div몫 mod나머지
+        select (산술) from 테이블명 where (산술)
+    2. 비교연산자 : >초과 <미만 >=이상 <=이하 =같다 !=같지않다
+        select 속성명 from 테이블명 where (비교)
+    3. 논리연산자 : and이면서 or이거나 not부정
+        select 속성명 from 테이블명 where (논리)
+    4. 기타연산자
+        (1) select 속성명 from 테이블명 where 속성명 between 시작값 and 끝값
+        (2) select 속성명 from 테이블명 where 속성명 in( 값1 , 값2 )
+    5. null연산자
+        (1) select 속성명 from 테이블명 where 속성명 is null
+        (2) select 속성명 from 테이블명 where 속성명 is not null
+    6. 문자패턴
+        (1) 속성명 like '%'    : 모든문자대응 , 제한없음
+            select 속성명 from 테이블명 where 이름 like '김%';    김씨 찾기 , 김x 김xx 김xxx 김xxxx
+        (2) 속성명 like '_'    : 모든문자대응 , _개수만큼 문자조회
+            select 속성명 from 테이블명 where 이름 like '김__';    김씨 찾기 , 김xx
+[ 정렬 ]
+    1. order by 속성명 asc     : 오름차순 , asc/desc 생략시 기본값
+    2. order by 속성명 desc    : 내림차순
+    * 주의할점 : 2차 정렬부터는 앞 정렬의 동일한 레코드끼리 정렬
+    select 속성명 from 테이블명 order by 학급 asc , 점수 desc;     학급 먼저 정렬후 동일한 학급끼리 점수 정렬
+
+[ 조회결과 제한 ]
+    1. limit 레코드수
+    2. limit 시작레코드번호(0) , 개수
+    * 주로 페이징처리 사용됨.
+    select 속성명 from 테이블명 limit 0 , 10;  [1페이지]
+    select 속성명 from 테이블명 limit 10 , 10; [2페이지]
+    select 속성명 from 테이블명 limit 20 , 10; [3페이지]
+
+[ 키워드 작성 순서 ]
+    [select] 속성명 [from] 테이블명 [where] 조건절 [order by] 속성명 asc/desc [limit] 개수;
