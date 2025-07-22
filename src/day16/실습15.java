@@ -1,8 +1,8 @@
 package day16;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Scanner;
+
 
 public class 실습15 {
     public static void main(String[] args) {
@@ -57,45 +57,103 @@ public class 실습15 {
             String outStr = name + "님이 방문했습니다.\n";// 2. 문자열 연결 : +
             String path2 = "src/visit_log.txt";  // 3. 파일 경로 지정
             File file2 = new File(path2); // 4. 지정 경로에 파일 존재여부 확인
+            //문제5 :
+            try (Scanner scanner = new Scanner(System.in);
+                 FileWriter writer = new FileWriter("contacts.csv", true)) {
 
-            // 방안1]
-//            String inStr = ""; // 공백문자열
-//            if (file2.exists()) { // 파일 존재하면 // 입력
-//                FileInputStream finput = new FileInputStream(path2); // 5. 파일 입력 객체
-//                byte[] bytes = new byte[(int) file2.length()]; // 6. 파일 용량 만큼 배열 선언
-//                finput.read(bytes); // 7. 읽어오기
-//                inStr = new String(bytes);  // 8. 문자열로 변환
-//            }
-//            inStr += outStr; // 9. 불러온 문자열과 입력받은 문자열 연결
-//            FileOutputStream foutput = new FileOutputStream( path2 );// 10. 출력객체
-//            byte[] bytes = inStr.getBytes(); // 11. 바이트로 변환
-//            foutput.write( bytes ); // 12. 바이트 내보내기
+                System.out.print("이름: ");
+                name = scanner.nextLine();
 
-            // 방안2] new FileOutputStream( 경로 , true );
-            FileOutputStream foutput = new FileOutputStream( path2 , true );
-            foutput.write( outStr.getBytes( ) );
+                System.out.print("전화번호: ");
+                String phone = scanner.nextLine();
 
-        } catch (Exception e) {   System.out.println( e );  }
+                System.out.print("도시: ");
+                String city = scanner.nextLine();
 
-        // 문제8 : https://www.data.go.kr/data/3044322/fileData.do
-        // --> src/day16/인천광역시 부평구_인구 현황.csv
-        try {
-            String path3 = "src/day16/인천광역시 부평구_인구 현황.csv"; // (1) 파일 경로 지정
-            FileInputStream fin3 = new FileInputStream(path3); // (2) 파일 입력 객체 생성
-            // (3) 파일 읽어올 바이트를 파일 크기만  선언
-            File file3 = new File(path3);
-            byte[] bytes3 = new byte[(int) file3.length()];
-            fin3.read(bytes3);  // (4) 읽어오기
-            String str3 = new String(bytes3, "EUC-KR"); // (5) 문자열로 변환
-            String[] rows = str3.split("\n"); // (6) 행 단위로 분리하기 , .split( "구분문자" );
-            for( int i = 0 ; i < rows.length ; i++ ){ // (7) 행 단위 반복
-                String row = rows[i];   // (8) 하나의 행 추출
-                String[] cols = row.split(","); // (9) 하나의 행에서 열 분리하기
-                System.out.printf("동별: %s, 총 인구: %s명 \n" , cols[0], cols[1] ); // 첫번째열[0] 두번째열[1]
+                writer.write(String.format("%s,%s,%s%n", name, phone, city));
+                System.out.println("연락처가 저장되었습니다.");
+
+            } catch (IOException e) {
+                System.out.println("저장 오류: " + e.getMessage());
             }
-        } catch (Exception e) { System.out.println( e );   }
+            //문제6 :
+            try (Scanner scanner = new Scanner(System.in);
+                 FileWriter writer = new FileWriter("src/movie_review.txt", true)) { // append 모드
 
-    } // main end
+                System.out.print("좋아하는 영화 제목과 감상평을 입력하세요 (한 줄): ");
+                String review = scanner.nextLine();
+
+                writer.write(review + System.lineSeparator());
+                System.out.println("감상평이 저장되었습니다.");
+
+            } catch (IOException e) {
+                System.out.println("파일 저장 중 오류: " + e.getMessage());
+            }
+
+            //문제7 :
+            file = new File("src/movie_review.txt");
+
+            if (!file.exists()) {
+                System.out.println("파일이 존재하지 않습니다.");
+                return;
+            }
+
+            try (FileInputStream fis = new FileInputStream(file)) {
+                long fileSize = file.length();
+                byte[] data = new byte[(int) fileSize]; // 파일 크기만큼 바이트 배열 생성
+
+                int bytesRead = fis.read(data); // 전체 읽기
+                if (bytesRead > 0) {
+                    String content = new String(data);
+                    System.out.println("저장된 감상평 내용:\n" + content);
+                } else {
+                    System.out.println("파일이 비어 있습니다.");
+                }
+
+            } catch (IOException e) {
+                System.out.println("파일 읽기 중 오류 발생: " + e.getMessage());
+            }
+
+
+//            // 방안1]
+//           String inStr = ""; // 공백문자열
+//           if (file2.exists()) { // 파일 존재하면 // 입력
+//               FileInputStream finput = new FileInputStream(path2); // 5. 파일 입력 객체
+//               byte[] bytes = new byte[(int) file2.length()]; // 6. 파일 용량 만큼 배열 선언
+//              finput.read(bytes); // 7. 읽어오기
+//             inStr = new String(bytes);  // 8. 문자열로 변환
+//          }
+//           inStr += outStr; // 9. 불러온 문자열과 입력받은 문자열 연결
+//           FileOutputStream foutput = new FileOutputStream( path2 );// 10. 출력객체
+//          byte[] bytes = inStr.getBytes(); // 11. 바이트로 변환
+//          foutput.write( bytes ); // 12. 바이트 내보내기
+//
+//            // 방안2] new FileOutputStream( 경로 , true );
+//            FileOutputStream foutput = new FileOutputStream( path2 , true );
+//            foutput.write( outStr.getBytes( ) );
+//
+            } catch (Exception e) {   System.out.println( e );  }
+
+            // 문제8 : https://www.data.go.kr/data/3044322/fileData.do
+            // --> src/day16/인천광역시 부평구_인구 현황.csv
+            try {
+                String path3 = "src/day16/인천광역시 부평구_인구 현황.csv"; // (1) 파일 경로 지정
+                FileInputStream fin3 = new FileInputStream(path3); // (2) 파일 입력 객체 생성
+                // (3) 파일 읽어올 바이트를 파일 크기만  선언
+                File file3 = new File(path3);
+                byte[] bytes3 = new byte[(int) file3.length()];
+                fin3.read(bytes3);  // (4) 읽어오기
+                String str3 = new String(bytes3, "EUC-KR"); // (5) 문자열로 변환
+                String[] rows = str3.split("\n"); // (6) 행 단위로 분리하기 , .split( "구분문자" );
+                for (int i = 0; i < rows.length; i++) { // (7) 행 단위 반복
+                    String row = rows[i];   // (8) 하나의 행 추출
+                    String[] cols = row.split(","); // (9) 하나의 행에서 열 분리하기
+                    System.out.printf("동별: %s, 총 인구: %s명 \n", cols[0], cols[1]); // 첫번째열[0] 두번째열[1]
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }// main end
 }  // class end
 
 /*
