@@ -16,13 +16,10 @@ public class BoardView {
 
     private BoardView() {
     }
-
     private static final BoardView instance = new BoardView();
-
     public static BoardView getInstance() {
         return instance;
     }
-
     //(*) 모든 메소드가 사용 가능하도록 메소드밖에 입력객체 생성
     private Scanner scan = new Scanner(System.in);
     // (*) BoardController 싱글톤 불러오기
@@ -86,6 +83,7 @@ public class BoardView {
         } // for end
     }
 
+    //(3) 삭제 화면 구현
     public void boardDelete(){
         //1.입력받기
         System.out.println("취소할 대기번호:");

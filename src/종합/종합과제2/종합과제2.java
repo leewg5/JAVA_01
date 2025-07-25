@@ -1,4 +1,4 @@
-package 종합;
+package 종합.종합과제2;
 
 public class 종합과제2 {
 
